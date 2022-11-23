@@ -1,1 +1,25 @@
 <h1>30 Days Challenges</h1>
+
+<div *ngFor="let dat of data | paginate: { itemsPerPage:1,currentPage: p }">
+  ID: {{dat.id | json}}
+  Image: <img [src] ="dat.url" width="100px" height="100px">
+</div>
+
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+<hr/>
+
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Image</th>
+  </tr>
+  <tr *ngFor="let tabledata of data | paginate:{itemsPerPage:200,currentPage:q}">
+    <td>{{tabledata.id}}</td>
+    <td><img src="{{tabledata.url}}" width="100px" height="100px"></td>
+  </tr>
+</table>
+
+<pagination-controls (pageChange)="q = $event"></pagination-controls>
